@@ -1,6 +1,7 @@
 ﻿using Ponto_VirgulaSalesWeb.Data;
 using Ponto_VirgulaSalesWeb.Models;
 using Microsoft.EntityFrameworkCore;
+using Ponto_VirgulaSalesWeb.Services.Exceptions;
 
 namespace Ponto_VirgulaSalesWeb.Services
 {
@@ -32,6 +33,23 @@ namespace Ponto_VirgulaSalesWeb.Services
             var obj = _context.Seller.Find(id);
             _context.Seller.Remove(obj);
             _context.SaveChanges();
+        }
+        
+        public void Update(Seller obj)
+        {
+            if (!_context.Seller.Any(x => x.Id == obj.Id))
+            {
+                throw new NotFoundException("Id not found");
+            }
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
     }
 }
