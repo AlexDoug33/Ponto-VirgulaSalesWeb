@@ -1,4 +1,5 @@
-﻿using Ponto_VirgulaSalesWeb.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Ponto_VirgulaSalesWeb.Data;
 using Ponto_VirgulaSalesWeb.Models;
 
 namespace Ponto_VirgulaSalesWeb.Services
@@ -12,17 +13,9 @@ namespace Ponto_VirgulaSalesWeb.Services
             _context = context;
         }
 
-        public List<Department> FindAll()
+        public async Task<List<Department>> FindAllAsync()
         {
-            return _context.Department.OrderBy(x => x.Name).ToList();
+            return await _context.Department.OrderBy(x => x.Name).ToListAsync();
         }
-
-
-
-
-
-
-
     }
 }
- 
