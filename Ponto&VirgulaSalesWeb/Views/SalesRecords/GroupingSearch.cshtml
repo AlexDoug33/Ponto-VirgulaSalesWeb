@@ -1,14 +1,14 @@
-﻿@* @model IEnumerable<IGrouping<Department, SalesRecord>> *@
+﻿@model IEnumerable<IGrouping<Department, SalesRecord>>
 
 @{
     ViewData["Title"] = "Grouping Search";
-    // DateTime minDate = DateTime.Parse(ViewData["minDate"] as string);
-    // DateTime maxDate = DateTime.Parse(ViewData["maxDate"] as string);
+    DateTime minDate = DateTime.Parse(ViewData["minDate"] as string);
+    DateTime maxDate = DateTime.Parse(ViewData["maxDate"] as string);
 }
 
 <h2>@ViewData["Title"]</h2>
 
-@* <nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -72,4 +72,4 @@
             </table>
         </div>
     </div>
-} *@
+}
